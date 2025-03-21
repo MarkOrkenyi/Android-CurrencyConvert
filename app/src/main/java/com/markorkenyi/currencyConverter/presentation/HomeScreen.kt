@@ -18,12 +18,16 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
+
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
@@ -50,13 +54,17 @@ fun HomeScreenContent(
     val baseCurrencyList = filteredCurrencies.filter { it != destCurrency }
     val destCurrencyList = filteredCurrencies.filter { it != baseCurrency }
 
+
+    // Create ScalingLazyListStates for Wear OS scrolling.
+    val baseListState = rememberScalingLazyListState()
+    val destListState = rememberScalingLazyListState()
+
     WearAppTheme {
-        // Use the official Wear Scaffold.
         Scaffold(
             vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
-            positionIndicator = { /* Optional scroll indicator */ }
+            positionIndicator = { }
         ) {
-            // Wear Scaffold doesn't provide content padding so we simply fill the space.
+            // The Wear Scaffold doesn't provide content padding so we simply fill the space.
             Box(modifier = Modifier.fillMaxSize()) {
                 // Center the row of currency lists at the top.
                 Box(
@@ -70,19 +78,20 @@ fun HomeScreenContent(
                         verticalAlignment = Alignment.Top
                     ) {
                         // Left: Base currency list.
-                        LazyColumn(
+                        ScalingLazyColumn(
+                            state = baseListState,
                             modifier = Modifier
                                 .widthIn(max = 80.dp)
                                 .heightIn(max = 110.dp)
                                 .padding(4.dp),
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            items(items = baseCurrencyList) { currencyCode ->
+                            items(baseCurrencyList.size) { index ->
+                                val currencyCode = baseCurrencyList[index]
                                 Text(
                                     text = currencyCode.uppercase(),
                                     modifier = Modifier
                                         .clickable {
-                                            // Toggle de-selection: if clicked currency equals current selection, de-select it.
                                             if (currencyCode == baseCurrency) onBaseClick("")
                                             else onBaseClick(currencyCode)
                                         }
@@ -91,20 +100,21 @@ fun HomeScreenContent(
                                         MaterialTheme.typography.bodyLarge.copy(
                                             color = MaterialTheme.colorScheme.primary
                                         )
-                                    else
-                                        MaterialTheme.typography.bodyLarge
+                                    else MaterialTheme.typography.bodyLarge
                                 )
                             }
                         }
                         // Right: Destination currency list.
-                        LazyColumn(
+                        ScalingLazyColumn(
+                            state = destListState,
                             modifier = Modifier
                                 .widthIn(max = 80.dp)
                                 .heightIn(max = 110.dp)
                                 .padding(4.dp),
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            items(items = destCurrencyList) { currencyCode ->
+                            items(destCurrencyList.size) { index ->
+                                val currencyCode = destCurrencyList[index]
                                 Text(
                                     text = currencyCode.uppercase(),
                                     modifier = Modifier
@@ -117,8 +127,7 @@ fun HomeScreenContent(
                                         MaterialTheme.typography.bodyLarge.copy(
                                             color = MaterialTheme.colorScheme.primary
                                         )
-                                    else
-                                        MaterialTheme.typography.bodyLarge
+                                    else MaterialTheme.typography.bodyLarge
                                 )
                             }
                         }
@@ -142,8 +151,8 @@ fun HomeScreenContent(
 @Composable
 fun HomeScreen(onConvertClick: (base: String, dest: String) -> Unit) {
     // Default selections
-    var baseCurrency by remember { mutableStateOf("USD") }
-    var destCurrency by remember { mutableStateOf("EUR") }
+    var baseCurrency by remember { mutableStateOf("") }
+    var destCurrency by remember { mutableStateOf("") }
     // Hold the currencies map; start empty
     var currencies by remember { mutableStateOf<Map<String, String>>(emptyMap()) }
 
