@@ -1,0 +1,69 @@
+[versions]
+android-gradle-plugin = "8.9.0"
+androidx-activity = "1.10.1"
+androidx-compose-bom = "2025.03.00"
+androidx-wear-compose = "1.4.1"
+compose-compiler = "1.5.15"
+compose-foundation = "<latest_version>"
+compose-material = "<version>"
+compose-ui-tooling = "1.4.1"
+converter-gson = "2.9.0"
+horologist = "0.7.5-alpha"
+ktlint = "0.50.0"
+material3 = "1.3.1"
+material3-adaptive-navigation-suite = "1.4.0-alpha10"
+material3-window-size-class1 = "1.3.1"
+navigation-compose = "latest-version"
+org-jetbrains-kotlin = "1.9.25"
+retrofit = "2.9.0"
+robolectric = "4.14.1"
+roborazzi = "1.43.0"
+ui-test-junit4 = "1.7.8"
+ui-test-manifest = "1.7.8"
+material3-android = "1.3.1"
+compose-material3 = "1.0.0-alpha34"
+kotlin = "2.1.0"
+
+[libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
+androidx-compose-foundation-vlatestversion = { module = "androidx.wear.compose:compose-foundation", version.ref = "compose-foundation" }
+androidx-compose-material-vversion = { module = "androidx.wear.compose:compose-material", version.ref = "compose-material" }
+androidx-compose-ui-tooling = { module = "androidx.wear.compose:compose-ui-tooling", version.ref = "compose-ui-tooling" }
+androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+androidx-material3-adaptive-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3-adaptive-navigation-suite" }
+androidx-material3-window-size-class1 = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "material3-window-size-class1" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+androidx-splashscreen =  "androidx.core:core-splashscreen:1.0.1"
+androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "ui-test-junit4" }
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "ui-test-manifest" }
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converter-gson" }
+desugar-jdk-libs = "com.android.tools:desugar_jdk_libs:2.1.5"
+horologist-compose-layout = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }
+horologist-compose-material = { module = "com.google.android.horologist:horologist-compose-material", version.ref = "horologist" }
+horologist-roboscreenshots = { module = "com.google.android.horologist:horologist-roboscreenshots", version.ref = "horologist" }
+junit = "junit:junit:4.13.2"
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "org-jetbrains-kotlin" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
+roborazzi-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
+test-espresso-core = "androidx.test.espresso:espresso-core:3.6.1"
+test-ext-junit = "androidx.test.ext:junit:1.2.1"
+wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation", version.ref = "androidx-wear-compose" }
+wear-compose-material = { module = "androidx.wear.compose:compose-material", version.ref = "androidx-wear-compose" }
+wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "androidx-wear-compose" }
+androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3-android" }
+androidx-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "compose-material3" }
+
+[plugins]
+com-android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+com-diffplug-spotless = "com.diffplug.spotless:7.0.2"
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
